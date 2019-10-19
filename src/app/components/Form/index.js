@@ -34,8 +34,9 @@ export default class Form extends Component {
     if (this.props.validation) {
       const errors = this.props.validation(this.props.data);
       await this.setState({errors});
+      if (errors.length > 0) return;
     }
-    this.props.onSubmit && this.props.onSubmit();
+    this.props.onSubmit && this.props.onSubmit(this.state.errors);
   };
 
   render () {

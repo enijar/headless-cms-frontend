@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import get from "lodash/get";
 import { FormContext } from "../../context/FormContext";
+import Error from "./Error";
 
 @FormContext
 export default class Input extends Component {
@@ -19,7 +20,7 @@ export default class Input extends Component {
   };
 
   render () {
-    const error = this.props.form.errors.find(error => error.name === this.props.name);
+    const error = get(this.props.form.errors.find(error => error.name === this.props.name), 'message');
     return (
       <div className={`Form__input Form__input--${this.props.type}`}>
         <input
@@ -30,7 +31,7 @@ export default class Input extends Component {
           name={this.props.name}
           onChange={this.#handleChange}
         />
-        {get(error, 'message')}
+        {error && <Error>{error}</Error>}
       </div>
     );
   }

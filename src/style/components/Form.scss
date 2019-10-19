@@ -20,4 +20,10 @@
       border: 1px solid lighten($color-default, 25%);
     }
   }
+
+  &__error {
+    font-size: 0.75em;
+    margin-top: 0.25em;
+    color: $color-danger;
+  }
 }

@@ -17,7 +17,7 @@ export default class LoginScreen extends Component {
   #handleChange = data => this.setState({data});
 
   #handleSubmit = () => {
-    //
+    console.log('submit->data', this.state.data);
   };
 
   render () {
