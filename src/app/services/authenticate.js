@@ -1,14 +1,25 @@
+import api from "./api";
+
 /**
  * Check if the current session is authenticated.
+ * @param {String} pathname
+ * @param {String} jwt
  * @return {Promise<Boolean>}
  */
-import { LOCAL_STORAGE_KEY_PREFIX } from "../core/consts";
-
-export default async () => {
-  const jwt = localStorage.getItem(`${LOCAL_STORAGE_KEY_PREFIX}.jwt`);
+export default async (pathname, jwt) => {
   if (jwt === null) {
     return false;
   }
-  // @todo send request to API, to check if JWT is valid
-  return false;
+
+  const res = await api
+    .headers({
+      'Authorization': `Bearer ${jwt}`,
+    })
+    .get('/api/user', {jwt});
+
+  if (res.status === 401) {
+    return false;
+  }
+
+  return res.data;
 };

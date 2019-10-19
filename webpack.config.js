@@ -19,6 +19,7 @@ const config = {
     new webpack.ProgressPlugin(),
     new webpack.DefinePlugin({
       // Pass values from .env file to browser
+      'process.env.APP_ENV': process.env.APP_ENV || 'production',
     }),
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({

@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import queryString from "query-string";
 import Loading from "./Loading";
 import services from "../services";
+import { LOCAL_STORAGE_KEY_PREFIX } from "../core/consts";
 
 @withRouter
 export default class Screen extends Component {
@@ -17,7 +18,8 @@ export default class Screen extends Component {
 
   async componentDidMount () {
     const {pathname, search} = this.props.location;
-    const authenticated = await services.authenticate(pathname);
+    const jwt = localStorage.getItem(`${LOCAL_STORAGE_KEY_PREFIX}.jwt`);
+    const authenticated = await services.authenticate(pathname, jwt);
 
     // Redirect to login
     if (!authenticated && pathname !== '/login') {
