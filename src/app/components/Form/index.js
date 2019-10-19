@@ -10,6 +10,7 @@ export default class Form extends Component {
     data: PropTypes.object,
     onChange: PropTypes.func,
     onSubmit: PropTypes.func,
+    validation: PropTypes.func,
   };
 
   static defaultProps = {
@@ -20,19 +21,26 @@ export default class Form extends Component {
   static Label = Label;
   static Input = Input;
 
+  state = {
+    errors: [],
+  };
+
   #handleChange = data => {
     this.props.onChange && this.props.onChange(data);
   };
 
-  #handleSubmit = event => {
+  #handleSubmit = async event => {
     event.preventDefault();
-    console.log('submit');
+    if (this.props.validation) {
+      const errors = this.props.validation(this.props.data);
+      await this.setState({errors});
+    }
     this.props.onSubmit && this.props.onSubmit();
   };
 
   render () {
     return (
-      <FormContextProvider onChange={this.#handleChange} data={this.props.data}>
+      <FormContextProvider onChange={this.#handleChange} data={this.props.data} errors={this.state.errors}>
         <form className="Form" onSubmit={this.#handleSubmit}>
           {this.props.children}
         </form>

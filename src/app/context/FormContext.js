@@ -13,7 +13,12 @@ export const FormContext = Component => props => (
 export default class FormContextProvider extends Component {
   static propTypes = {
     data: PropTypes.object,
+    errors: PropTypes.array,
     onChange: PropTypes.func,
+  };
+
+  static defaultProps = {
+    errors: [],
   };
 
   #handleChange = (name, value) => {
@@ -26,6 +31,7 @@ export default class FormContextProvider extends Component {
 
   #getContext = () => ({
     data: this.props.data,
+    errors: this.props.errors,
     onChange: this.#handleChange,
   });
 
