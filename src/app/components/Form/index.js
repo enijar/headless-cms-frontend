@@ -33,7 +33,7 @@ export default class Form extends Component {
   render () {
     return (
       <FormContextProvider onChange={this.#handleChange} data={this.props.data}>
-        <form onSubmit={this.#handleSubmit}>
+        <form className="Form" onSubmit={this.#handleSubmit}>
           {this.props.children}
         </form>
       </FormContextProvider>

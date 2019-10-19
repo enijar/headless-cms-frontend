@@ -1,0 +1,31 @@
+.Button {
+  border: none;
+  color: #fff;
+  padding: 0.5em 1em;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+
+  &--default {
+    background-color: $color-default;
+    &:hover {
+      background-color: lighten($color-default, 15%);
+    }
+  }
+
+  &--primary {
+    background-color: $color-primary;
+    &:hover {
+      background-color: lighten($color-primary, 15%);
+    }
+  }
+
+  &--danger {
+    background-color: $color-danger;
+    &:hover {
+      background-color: lighten($color-danger, 15%);
+    }
+  }
+}

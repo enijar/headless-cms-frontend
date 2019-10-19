@@ -1,5 +1,9 @@
 .Screen--Login {
   display: flex;
   align-items: center;
-  justify-content: center;
+
+  .Form {
+    max-width: 250px;
+    margin: auto;
+  }
 }
