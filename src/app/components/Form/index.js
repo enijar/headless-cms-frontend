@@ -23,6 +23,7 @@ export default class Form extends Component {
 
   state = {
     errors: [],
+    focusedElement: null,
   };
 
   #handleChange = data => {
@@ -36,12 +37,25 @@ export default class Form extends Component {
       await this.setState({errors});
       if (errors.length > 0) return;
     }
+
+    if (this.state.focusedElement !== null) {
+      this.state.focusedElement.blur();
+      await this.setState({focusedElement: null});
+    }
+
     this.props.onSubmit && this.props.onSubmit(this.state.errors);
   };
 
+  #handleElementFocus = focusedElement => this.setState({focusedElement});
+
   render () {
     return (
-      <FormContextProvider onChange={this.#handleChange} data={this.props.data} errors={this.state.errors}>
+      <FormContextProvider
+        onChange={this.#handleChange}
+        onElementFocus={this.#handleElementFocus}
+        data={this.props.data}
+        errors={this.state.errors}
+      >
         <form className="Form" onSubmit={this.#handleSubmit}>
           {this.props.children}
         </form>

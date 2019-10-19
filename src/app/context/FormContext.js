@@ -15,6 +15,7 @@ export default class FormContextProvider extends Component {
     data: PropTypes.object,
     errors: PropTypes.array,
     onChange: PropTypes.func,
+    onElementFocus: PropTypes.func,
   };
 
   static defaultProps = {
@@ -29,10 +30,17 @@ export default class FormContextProvider extends Component {
     }
   };
 
+  #onFocus = focusedElement => {
+    if (this.props.onElementFocus) {
+      this.props.onElementFocus(focusedElement);
+    }
+  };
+
   #getContext = () => ({
     data: this.props.data,
     errors: this.props.errors,
     onChange: this.#handleChange,
+    onFocus: this.#onFocus,
   });
 
   render () {

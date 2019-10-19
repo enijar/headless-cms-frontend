@@ -4,10 +4,12 @@ import Screen from "../components/Screen";
 import Form from "../components/Form";
 import Button from "../components/Button";
 import services from "../services";
+import Loading from "../components/Loading";
 
 @AppContext
 export default class LoginScreen extends Component {
   state = {
+    loading: false,
     data: {
       email: '',
       password: '',
@@ -16,13 +18,23 @@ export default class LoginScreen extends Component {
 
   #handleChange = data => this.setState({data});
 
-  #handleSubmit = () => {
-    console.log('submit->data', this.state.data);
+  #handleSubmit = async () => {
+    if (this.state.loading) {
+      return;
+    }
+
+    await this.setState({loading: true});
+    const res = await services.api.post('/api/auth/login', this.state.data);
+    console.log('res', res);
+    setTimeout(() => {
+      this.setState({loading: false});
+    }, 2000);
   };
 
   render () {
     return (
       <Screen name="Login">
+        {this.state.loading && <Loading>Authenticating...</Loading>}
         <Form
           data={this.state.data}
           onChange={this.#handleChange}
