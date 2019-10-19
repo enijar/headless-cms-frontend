@@ -8,6 +8,7 @@ Headless CMS UI, components, and design.
 cp .env.example .env
 npm install
 npm run watch
+npm run test-watch # optional
 ```
 
 Open [localhost:8080](http://localhost:8080) in your browser.
@@ -23,6 +24,7 @@ Set `APP_ENV=production` inside `.env` file.
 ```shell
 npm install
 npm run build
+npm test # confirm tests are passing
 ```
 
 All files will be compiled to the `build` directory.
