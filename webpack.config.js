@@ -2,7 +2,6 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 require('dotenv').config({path: path.resolve(__dirname, '.env')});
 
 const SRC_PATH = path.resolve(__dirname, 'src');
@@ -83,18 +82,6 @@ module.exports = (env, argv) => {
   if (argv.hot) {
     // contenthash isn't available when hot reloading.
     config.output.filename = '[name].[hash].js';
-  }
-
-  if (argv.mode === 'production') {
-    config.plugins = [
-      ...config.plugins,
-      new OptimizeCssAssetsPlugin({
-        cssProcessor: require('cssnano'),
-        cssProcessorPluginOptions: {
-          preset: ['default', {discardComments: {removeAll: true}}],
-        },
-      }),
-    ];
   }
 
   return config;
