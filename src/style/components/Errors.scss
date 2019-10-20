@@ -1,0 +1,8 @@
+.Errors {
+  list-style: none;
+  margin-bottom: 1em;
+
+  &__error {
+    color: $color-danger;
+  }
+}

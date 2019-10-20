@@ -7,6 +7,7 @@ import Button from "../components/Button";
 import services from "../services";
 import Loading from "../components/Loading";
 import { LOCAL_STORAGE_KEY_PREFIX } from "../core/consts";
+import Errors from "../components/Errors";
 
 @AppContext
 export default class LoginScreen extends Component {
@@ -50,15 +51,7 @@ export default class LoginScreen extends Component {
             password: [rule.required],
           }))}
         >
-          {this.state.serverErrors.length > 0 && (
-            <Form.Group>
-              {this.state.serverErrors.map((error, index) => (
-                <div className="text-danger" key={`error-${index}`}>
-                  {error}
-                </div>
-              ))}
-            </Form.Group>
-          )}
+          <Errors errors={this.state.serverErrors}/>
           <Form.Group>
             <Form.Label htmlFor="email">Email</Form.Label>
             <Form.Input name="email" autoComplete="email"/>
