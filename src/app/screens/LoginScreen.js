@@ -1,15 +1,18 @@
 import React, { Component } from "react";
+import get from "lodash/get";
 import { AppContext } from "../context/AppContext";
 import Screen from "../components/Screen";
 import Form from "../components/Form";
 import Button from "../components/Button";
 import services from "../services";
 import Loading from "../components/Loading";
+import { LOCAL_STORAGE_KEY_PREFIX } from "../core/consts";
 
 @AppContext
 export default class LoginScreen extends Component {
   state = {
     loading: false,
+    serverErrors: [],
     data: {
       email: '',
       password: '',
@@ -23,12 +26,15 @@ export default class LoginScreen extends Component {
       return;
     }
 
-    await this.setState({loading: true});
+    await this.setState({loading: true, serverErrors: []});
     const res = await services.api.post('/api/auth/login', this.state.data);
-    console.log('res', res);
-    setTimeout(() => {
-      this.setState({loading: false});
-    }, 2000);
+
+    if (res.status === 401) {
+      return this.setState({loading: false, serverErrors: res.errors});
+    }
+
+    localStorage.setItem(`${LOCAL_STORAGE_KEY_PREFIX}.jwt`, get(res.data, 'token', null));
+    this.props.history.push('/');
   };
 
   render () {
@@ -44,6 +50,15 @@ export default class LoginScreen extends Component {
             password: [rule.required],
           }))}
         >
+          {this.state.serverErrors.length > 0 && (
+            <Form.Group>
+              {this.state.serverErrors.map((error, index) => (
+                <div className="text-danger" key={`error-${index}`}>
+                  {error}
+                </div>
+              ))}
+            </Form.Group>
+          )}
           <Form.Group>
             <Form.Label htmlFor="email">Email</Form.Label>
             <Form.Input name="email" autoComplete="email"/>

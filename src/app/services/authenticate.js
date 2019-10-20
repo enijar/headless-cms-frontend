@@ -11,11 +11,7 @@ export default async (pathname, jwt) => {
     return false;
   }
 
-  const res = await api
-    .headers({
-      'Authorization': `Bearer ${jwt}`,
-    })
-    .get('/api/user', {jwt});
+  const res = await api.get('/api/auth/user');
 
   if (res.status === 401) {
     return false;
