@@ -1,3 +1,4 @@
+import config from "../core/config";
 import { LOCAL_STORAGE_KEY_PREFIX } from "../core/consts";
 
 const DEFAULT_HEADERS = {
