@@ -34,7 +34,10 @@ export default class LoginScreen extends Component {
       return this.setState({loading: false, serverErrors: res.errors});
     }
 
-    localStorage.setItem(`${LOCAL_STORAGE_KEY_PREFIX}.jwt`, get(res.data, 'token', null));
+    localStorage.setItem(`${LOCAL_STORAGE_KEY_PREFIX}.jwt`, JSON.stringify({
+      token: get(res.data, 'token', null),
+      expires: get(res.data, 'expires', null),
+    }));
     this.props.history.push('/');
   };
 

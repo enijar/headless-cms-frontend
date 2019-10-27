@@ -1,4 +1,3 @@
-import config from "../core/config";
 import { LOCAL_STORAGE_KEY_PREFIX } from "../core/consts";
 
 const DEFAULT_HEADERS = {
@@ -46,7 +45,7 @@ class Api {
     };
 
     try {
-      const res = await fetch(`${config.apiServer}/${endpoint}`, {
+      const res = await fetch(`/${endpoint}`, {
         method,
         headers: {...DEFAULT_HEADERS, ...headers},
         body: ['GET', 'HEAD'].includes(method) ? undefined : JSON.stringify(data),

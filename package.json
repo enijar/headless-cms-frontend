@@ -3,8 +3,8 @@
   "scripts": {
     "watch": "npx webpack-dev-server --hot --mode development",
     "build": "npx webpack -p --mode production",
-    "test": "npx mocha --require @babel/register test",
-    "test-watch": "npx mocha --watch --require @babel/register test"
+    "test": "npx jest",
+    "test-watch": "npx jest --watch"
   },
   "dependencies": {
     "core-js": "^3.2.1",
@@ -23,13 +23,12 @@
     "@babel/preset-react": "^7.6.3",
     "@babel/register": "^7.6.2",
     "babel-loader": "^8.0.6",
-    "chai": "^4.2.0",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.2.0",
     "fetch-mock": "^7.5.1",
     "file-loader": "^4.2.0",
     "html-webpack-plugin": "^3.2.0",
-    "mocha": "^6.2.1",
+    "jest": "^24.9.0",
     "node-fetch": "^2.6.0",
     "node-sass": "^4.12.0",
     "prop-types": "latest",
