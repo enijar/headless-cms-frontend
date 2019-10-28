@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import queryString from "query-string";
 import Loading from "./Loading";
 import services from "../services";
-import { LOCAL_STORAGE_KEY_PREFIX } from "../core/consts";
 
 @withRouter
 export default class Screen extends Component {
