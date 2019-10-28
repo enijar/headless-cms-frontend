@@ -1,6 +1,8 @@
 .Screen--ForgotLogin {
-  display: flex;
-  align-items: center;
+  .Content__main {
+    display: flex;
+    align-items: center;
+  }
 
   .Form {
     max-width: 250px;

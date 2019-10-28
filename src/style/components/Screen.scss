@@ -1,5 +1,10 @@
 .Screen {
   height: 100%;
   overflow: auto;
-  padding: 1em;
+
+  &--authenticated {
+    .Content__main {
+      width: calc(100% - #{$sidebar-width});
+    }
+  }
 }

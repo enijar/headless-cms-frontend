@@ -1,0 +1,8 @@
+.Content {
+  display: flex;
+  height: 100%;
+
+  &__main, &__section {
+    width: 100%;
+  }
+}

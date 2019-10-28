@@ -11,11 +11,14 @@ export const AppContext = Component => props => (
 
 export default class AppContextProvider extends Component {
   state = {
-    //
+    user: null,
   };
+
+  #setUser = user => this.setState({user});
 
   #getContext = () => ({
     ...this.state,
+    setUser: this.#setUser,
   });
 
   render () {

@@ -9,7 +9,7 @@ const INVALID_RESPONSE = null;
 test('Authentication fails when JWT is not set', async () => {
   localStorage.removeItem(`${LOCAL_STORAGE_KEY_PREFIX}.jwt`);
   const authenticated = await services.authenticate();
-  expect(authenticated).toEqual(false);
+  expect(authenticated).toEqual(null);
 });
 
 test('Authentication passes when JWT is valid', async () => {
