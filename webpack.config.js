@@ -20,6 +20,7 @@ const config = {
       // Pass values from .env file to browser
       'process.env.APP_ENV': JSON.stringify(process.env.APP_ENV),
       'process.env.API_SERVER': JSON.stringify(process.env.API_SERVER),
+      'process.env.APP_USER': JSON.stringify(process.env.APP_USER),
     }),
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
