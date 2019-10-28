@@ -1,8 +1,21 @@
 .Sidebar {
+  $padding: 0.5em;
   width: $sidebar-width;
   position: sticky;
   top: 0;
   left: 0;
   height: 100vh;
-  background-color: $color-primary;
+  background-color: $color-sidebar;
+  padding-left: $padding;
+  padding-right: $padding;
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: $header-height;
+    background-color: darken($color-sidebar, 10%);
+    margin-left: -$padding;
+    margin-right: -$padding;
+  }
 }

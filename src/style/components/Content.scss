@@ -10,8 +10,8 @@
     $spacing: 1em;
     padding: $spacing;
     background-color: $color-white;
-    box-shadow: 0 0 $spacing / 2 rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 0 $spacing / 6.5 $spacing / 6.5 rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(0, 0, 0, 0.15);
     border-radius: $spacing / 2;
     width: calc(100% - #{$spacing * 2});
     margin: $spacing;
