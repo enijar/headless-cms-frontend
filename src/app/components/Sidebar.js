@@ -5,7 +5,10 @@ export default class Sidebar extends Component {
     return (
       <div className="Sidebar">
         <div className="Sidebar__logo">
-          Headless CMS
+          <h1>Headless CMS</h1>
+        </div>
+        <div className="Sidebar__links">
+
         </div>
       </div>
     );

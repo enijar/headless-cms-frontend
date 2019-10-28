@@ -17,5 +17,17 @@
     background-color: darken($color-sidebar, 10%);
     margin-left: -$padding;
     margin-right: -$padding;
+    padding-left: $padding;
+    padding-right: $padding;
+
+    h1 {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+
+  &__links {
+    //
   }
 }

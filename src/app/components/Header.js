@@ -15,9 +15,9 @@ export default class Header extends Component {
   render () {
     return (
       <div className="Header">
-        <h1>
+        <h2>
           Welcome, {this.props.app.user.name}
-        </h1>
+        </h2>
         <Button size="small" mode="danger" onClick={this.#logout}>
           Logout
         </Button>
