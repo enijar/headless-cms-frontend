@@ -7,17 +7,16 @@ import Form from "../components/Form";
 import Button from "../components/Button";
 import services from "../services";
 import Loading from "../components/Loading";
-import { LOCAL_STORAGE_KEY_PREFIX } from "../core/consts";
 import Errors from "../components/Errors";
 
 @AppContext
 export default class ForgotLoginScreen extends Component {
   state = {
     loading: false,
+    message: '',
     serverErrors: [],
     data: {
       email: '',
-      password: '',
     },
   };
 
@@ -27,19 +26,9 @@ export default class ForgotLoginScreen extends Component {
     if (this.state.loading) {
       return;
     }
-
-    await this.setState({loading: true, serverErrors: []});
-    const res = await services.api.post('/api/auth/login', this.state.data);
-
-    if (res.status === 401) {
-      return this.setState({loading: false, serverErrors: res.errors});
-    }
-
-    localStorage.setItem(`${LOCAL_STORAGE_KEY_PREFIX}.jwt`, JSON.stringify({
-      token: get(res.data, 'token', null),
-      expires: get(res.data, 'expires', null),
-    }));
-    this.props.history.push('/');
+    await this.setState({loading: true, serverErrors: [], message: ''});
+    const res = await services.api.post('/api/auth/forgot-login', this.state.data);
+    this.setState({loading: false, serverErrors: res.errors, message: get(res, 'data.message', '')});
   };
 
   render () {
