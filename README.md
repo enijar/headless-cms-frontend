@@ -28,3 +28,11 @@ npm test # confirm tests are passing
 ```
 
 All files will be compiled to the `build` directory.
+
+### Faking user login
+
+Inside `.env` set a fake user object.
+
+```shell
+APP_USER={"id": 1, "name": "Foo", "email": "foo@example.com"}
+```
