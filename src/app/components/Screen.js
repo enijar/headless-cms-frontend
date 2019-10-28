@@ -18,8 +18,7 @@ export default class Screen extends Component {
 
   async componentDidMount () {
     const {pathname, search} = this.props.location;
-    const jwt = localStorage.getItem(`${LOCAL_STORAGE_KEY_PREFIX}.jwt`);
-    const authenticated = await services.authenticate(pathname, jwt);
+    const authenticated = await services.authenticate();
 
     // Redirect to login
     if (!authenticated && pathname !== '/login') {

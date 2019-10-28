@@ -3,8 +3,8 @@
   "scripts": {
     "watch": "npx webpack-dev-server --hot --mode development",
     "build": "npx webpack -p --mode production",
-    "test": "npx jest",
-    "test-watch": "npx jest --watch"
+    "test": "APP_ENV=testing npx jest",
+    "test-watch": "APP_ENV=testing npx jest --watch"
   },
   "dependencies": {
     "core-js": "^3.2.1",

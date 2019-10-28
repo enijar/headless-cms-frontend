@@ -1,15 +1,18 @@
 import api from "./api";
+import { LOCAL_STORAGE_KEY_PREFIX } from "../core/consts";
 
 /**
  * Check if the current session is authenticated.
- * @param {String} pathname
- * @param {String} jwt
  * @return {Promise<Boolean>}
  */
-export default async (pathname, jwt) => {
+export default async () => {
+  const jwt = JSON.parse(localStorage.getItem(`${LOCAL_STORAGE_KEY_PREFIX}.jwt`));
+
   if (jwt === null) {
     return false;
   }
+
+  // todo: check if JWT is expired before making API request
 
   const res = await api.get('/api/auth/user');
 

@@ -16,6 +16,11 @@ const config = {
   },
   plugins: [
     new webpack.ProgressPlugin(),
+    new webpack.DefinePlugin({
+      // Pass values from .env file to browser
+      'process.env.APP_ENV': JSON.stringify(process.env.APP_ENV),
+      'process.env.API_SERVER': JSON.stringify(process.env.API_SERVER),
+    }),
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: path.join(SRC_PATH, 'index.html'),
