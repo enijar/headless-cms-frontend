@@ -5,11 +5,13 @@ export default class Button extends Component {
   static propTypes = {
     className: PropTypes.string,
     type: PropTypes.oneOf(['button', 'submit']),
+    size: PropTypes.oneOf(['small', 'normal', 'large']),
     mode: PropTypes.oneOf(['default', 'primary', 'danger']),
   };
 
   static defaultProps = {
     className: '',
+    size: 'normal',
     mode: 'default',
   };
 
@@ -17,7 +19,7 @@ export default class Button extends Component {
     return (
       <button
         {...this.props}
-        className={`Button Button--${this.props.mode} ${this.props.className}`}
+        className={`Button Button--${this.props.mode} Button--${this.props.size} ${this.props.className}`}
         type={this.props.type}
       >
         {this.props.children}

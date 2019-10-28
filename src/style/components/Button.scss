@@ -31,4 +31,8 @@
       background-color: lighten($color-danger, 15%);
     }
   }
+
+  &--small {
+    font-size: 0.75rem;
+  }
 }

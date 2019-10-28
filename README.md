@@ -31,7 +31,7 @@ All files will be compiled to the `build` directory.
 
 ### Faking user login
 
-Inside `.env` set a fake user object.
+Inside `.env` set a fake user object (note: when set, logout functions won't work properly).
 
 ```shell
 APP_USER={"id": 1, "name": "Foo", "email": "foo@example.com"}
