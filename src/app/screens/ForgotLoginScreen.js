@@ -11,7 +11,7 @@ import { LOCAL_STORAGE_KEY_PREFIX } from "../core/consts";
 import Errors from "../components/Errors";
 
 @AppContext
-export default class LoginScreen extends Component {
+export default class ForgotLoginScreen extends Component {
   state = {
     loading: false,
     serverErrors: [],
@@ -44,15 +44,14 @@ export default class LoginScreen extends Component {
 
   render () {
     return (
-      <Screen name="Login">
-        {this.state.loading && <Loading>Authenticating...</Loading>}
+      <Screen name="ForgotLogin">
+        {this.state.loading && <Loading>Sending account reset email...</Loading>}
         <Form
           data={this.state.data}
           onChange={this.#handleChange}
           onSubmit={this.#handleSubmit}
           validation={services.validation(rule => ({
             email: [rule.required, rule.email],
-            password: [rule.required],
           }))}
         >
           <Errors errors={this.state.serverErrors}/>
@@ -61,13 +60,9 @@ export default class LoginScreen extends Component {
             <Form.Input name="email" autoComplete="email"/>
           </Form.Group>
           <Form.Group>
-            <Form.Label htmlFor="password">Password</Form.Label>
-            <Form.Input name="password" type="password" autoComplete="current-password"/>
+            <Link to="/login">Back to login</Link>
           </Form.Group>
-          <Form.Group>
-            <Link to="/forgot-login">Forgot login?</Link>
-          </Form.Group>
-          <Button>Login</Button>
+          <Button>Send Account Reset Email</Button>
         </Form>
       </Screen>
     );

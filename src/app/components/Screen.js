@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import queryString from "query-string";
 import Loading from "./Loading";
 import services from "../services";
+import config from "../core/config";
 
 @withRouter
 export default class Screen extends Component {
@@ -18,6 +19,11 @@ export default class Screen extends Component {
   async componentDidMount () {
     const {pathname, search} = this.props.location;
     const authenticated = await services.authenticate();
+
+    // Public route, ignore
+    if (config.publicRoutes.includes(pathname)) {
+      return this.setState({authenticating: false});
+    }
 
     // Redirect to login
     if (!authenticated && pathname !== '/login') {

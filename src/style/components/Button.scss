@@ -10,6 +10,7 @@
 
   &--default {
     background-color: $color-default;
+
     &:hover {
       background-color: lighten($color-default, 15%);
     }
@@ -17,6 +18,7 @@
 
   &--primary {
     background-color: $color-primary;
+
     &:hover {
       background-color: lighten($color-primary, 15%);
     }
@@ -24,6 +26,7 @@
 
   &--danger {
     background-color: $color-danger;
+
     &:hover {
       background-color: lighten($color-danger, 15%);
     }
