@@ -65,7 +65,7 @@ export default class LoginScreen extends Component {
             <Form.Input name="password" type="password" autoComplete="current-password"/>
           </Form.Group>
           <Form.Group>
-            <Link to="/forgot-login">Forgot login?</Link>
+            <Link to={`/forgot-login${this.props.location.search}`}>Forgot login?</Link>
           </Form.Group>
           <Button>Login</Button>
         </Form>

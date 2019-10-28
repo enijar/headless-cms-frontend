@@ -49,7 +49,7 @@ export default class ForgotLoginScreen extends Component {
             <Form.Input name="email" autoComplete="email"/>
           </Form.Group>
           <Form.Group>
-            <Link to="/login">Back to login</Link>
+            <Link to={`/login${this.props.location.search}`}>Back to login</Link>
           </Form.Group>
           <Button>Send Account Reset Email</Button>
         </Form>

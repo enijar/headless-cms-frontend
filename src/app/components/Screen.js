@@ -5,6 +5,7 @@ import queryString from "query-string";
 import Loading from "./Loading";
 import services from "../services";
 import config from "../core/config";
+import { AUTH_ROUTES } from "../core/consts";
 
 @withRouter
 export default class Screen extends Component {
@@ -20,13 +21,8 @@ export default class Screen extends Component {
     const {pathname, search} = this.props.location;
     const authenticated = await services.authenticate();
 
-    // Public route, ignore
-    if (config.publicRoutes.includes(pathname)) {
-      return this.setState({authenticating: false});
-    }
-
     // Redirect to login
-    if (!authenticated && pathname !== '/login') {
+    if (!authenticated && !AUTH_ROUTES.includes(pathname)) {
       return this.props.history.push(`/login?redirect=${encodeURI(pathname)}`);
     }
 
@@ -37,7 +33,7 @@ export default class Screen extends Component {
     }
 
     // Redirect to dashboard
-    if (authenticated && pathname === '/login') {
+    if (authenticated && AUTH_ROUTES.includes(pathname)) {
       return this.props.history.push('/');
     }
 
