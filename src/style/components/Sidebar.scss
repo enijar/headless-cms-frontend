@@ -1,13 +1,11 @@
 .Sidebar {
-  $padding: 0.5em;
+  $spacing: 0.5em;
   width: $sidebar-width;
   position: sticky;
   top: 0;
   left: 0;
   height: 100vh;
   background-color: $color-sidebar;
-  padding-left: $padding;
-  padding-right: $padding;
 
   &__logo {
     display: flex;
@@ -15,10 +13,9 @@
     justify-content: center;
     height: $header-height;
     background-color: darken($color-sidebar, 10%);
-    margin-left: -$padding;
-    margin-right: -$padding;
-    padding-left: $padding;
-    padding-right: $padding;
+    padding-left: $spacing;
+    padding-right: $spacing;
+    border-bottom: 1px solid darken($color-sidebar, 25%);
 
     h1 {
       overflow: hidden;
@@ -28,6 +25,74 @@
   }
 
   &__links {
-    //
+    $margin: 1em;
+    overflow: auto;
+
+    & > &-link {
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    &-link {
+      background-color: darken($color-sidebar, 10%);
+      border-bottom: 1px solid darken($color-sidebar, 25%);
+
+      &:hover {
+        background-color: darken($color-sidebar, 5%);
+      }
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      a {
+        display: block;
+        width: 100%;
+        padding: $spacing;
+        text-decoration: none;
+      }
+
+      & > a {
+        color: inherit;
+      }
+
+      &.children {
+        cursor: pointer;
+
+        .Sidebar__links-link {
+          margin-bottom: 0;
+          border-bottom: none;
+
+          & > a {
+            color: #fff;
+          }
+
+          &-title {
+            padding: $spacing;
+          }
+
+          &-children {
+            overflow: hidden;
+            height: 0;
+            transition: height 0.3s linear;
+
+            .Sidebar__links-link {
+              text-indent: $spacing;
+              background-color: lighten($color-sidebar, 5%);
+              border-bottom: 1px solid darken($color-sidebar, 15%);
+
+              &:last-child {
+                border-bottom: none;
+              }
+
+              &:hover {
+                background-color: $color-sidebar;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
